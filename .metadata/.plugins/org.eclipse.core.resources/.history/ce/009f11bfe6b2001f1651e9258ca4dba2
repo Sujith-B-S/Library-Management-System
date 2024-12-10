@@ -1,0 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import = "java.util.*" %>
+<%@ page import = "com.sg.entityclass.IssuedBooks" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>showIssuedBooks</title>
+</head>
+<body>
+	<%
+		ArrayList<IssuedBooks> ibList = request.getSession().getAttribute("ibList");
+	%>
+</body>
+</html>

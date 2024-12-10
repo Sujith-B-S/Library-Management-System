@@ -1,0 +1,41 @@
+package com.sg.entityclass;
+
+import java.sql.Date;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+
+@Entity
+@Table(name = "student")
+public class Student {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "sId")
+	private int sId;
+	@Column(name = "sName")
+	private String sName;
+	@Column(name = "email")
+	private String email;
+	@Column(name = "password")
+	private String password;
+	@Column(name = "phone")
+	private String phone;
+	@Column(name = "address")
+	private String address;
+	@Column(name = "department")
+	private String department;
+	@Column(name = "sem")
+	private int sem;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "registrationDate", updatable = false)
+	private Date registrationDate;
+	
+
+}

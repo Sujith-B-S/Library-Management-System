@@ -1,0 +1,38 @@
+package com.sg.servlets;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.sg.HibernateDAOImpl.HibernateDAOImpl;
+import com.sg.entityclass.IssuedBooks;
+
+/**
+ * Servlet implementation class ShowIssuedBooks
+ */
+public class ShowIssuedBooks extends HttpServlet {
+	
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		HibernateDAOImpl hdaoi = new HibernateDAOImpl();
+		
+		ArrayList<IssuedBooks> ibList = hdaoi.fetchAllIssuedBooks();
+		
+		for(IssuedBooks ib : ibList)
+		{
+			resp.getWriter().println(ib.getIssueId())
+		}
+		
+//		req.getSession().setAttribute("ibList", ibList);
+//		
+//		resp.sendRedirect("showIssuedBooks.jsp");
+		
+		
+	}
+
+}

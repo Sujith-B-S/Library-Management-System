@@ -1,0 +1,19 @@
+package com.sg.main;
+
+import com.sg.HibernateDAOImpl.HibernateDAOImpl;
+import com.sg.entityclass.Books;
+
+public class Main {
+
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        
+        HibernateDAOImpl hdao = new HibernateDAOImpl();
+        
+        // Create a Book object
+        Books b = new Books("Java Programming Basics", "Tech Books Publishing", "Programming", 15, 500.0, "2022-05-10", "A beginner's guide to Java programming.", "English");
+        
+        // Insert the book using the HibernateDAOImpl method
+        hdao.insertBook(b);
+    }
+}

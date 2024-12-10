@@ -1,0 +1,42 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ page import = "java.util.*" %>
+    <%@ page import = "com.sg.entityclass.Books" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Update Book</title>
+</head>
+<body>
+
+	<h1>Update Book</h1>
+	<%
+	Books b = (Books) request.getSession().getAttribute("book");
+ 	
+ 			if(b != null)
+ 			{
+				%>
+					
+				<form action="UpdateBook" method="POST">
+					<input type = "text" name = "bId" value="<%= b.getbId() %>" readonly="readonly">
+					<input type = "text" name = "bname" value="<%= b.getbName() %>">
+					<input type = "text" name = "publisher" value="<%= b.getPublisher() %>">
+					<input type = "text" name = "category" value="<%= b.getCategory() %>">
+					<input type = "text" name = "quantity" value="<%= b.getQuantity()%>">
+					<input type = "text" name = "price" value="<%= b.getPrice()%>">
+					<input type = "date" name = "pDate" value="<%= b.getPublicationDate()%>">
+					<input type = "text" name = "description" value="<%= b.getDescription()%>">
+					<input type = "text" name = "lang" value="<%= b.getLanguage()%>">
+					<input type = "submit" value = "Update">
+				</form>
+					
+				<%}
+ 			else
+ 			{%>
+ 				<p>Book List is Empty</p>
+ 			<%}
+ 	%>
+
+</body>
+</html>

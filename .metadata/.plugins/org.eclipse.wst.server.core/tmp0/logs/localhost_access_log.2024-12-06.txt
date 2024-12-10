@@ -1,0 +1,5 @@
+0:0:0:0:0:0:0:1 - - [06/Dec/2024:01:11:13 +0530] "GET /LibraryManagementSystem1/home.jsp HTTP/1.1" 200 542
+0:0:0:0:0:0:0:1 - - [06/Dec/2024:01:11:17 +0530] "GET /LibraryManagementSystem1/insertBook.jsp HTTP/1.1" 200 906
+0:0:0:0:0:0:0:1 - - [06/Dec/2024:01:11:20 +0530] "GET /LibraryManagementSystem1/registerStudent.jsp HTTP/1.1" 200 853
+0:0:0:0:0:0:0:1 - - [06/Dec/2024:01:11:23 +0530] "GET /LibraryManagementSystem1/ShowStudents HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [06/Dec/2024:01:11:23 +0530] "GET /LibraryManagementSystem1/studentdetails.jsp HTTP/1.1" 200 288

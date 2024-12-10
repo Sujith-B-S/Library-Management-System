@@ -1,0 +1,39 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ page import = "java.util.*" %>
+    <%@ page import = "com.sg.entityclass.Books" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Home Page</title>
+</head>
+<body>
+ 	<h1>Library Management System</h1>
+ 	<%
+ 			ArrayList<Books> bList = (ArrayList<Books>) request.getSession().getAttribute("bList");
+ 	
+ 			if(bList != null && !bList.isEmpty())
+ 			{
+				for(Books b : bList)
+				{%>
+					
+					<p><%= b.getbId() %></p>
+					<p><%= b.getbName() %></p>
+					<p><%= b.getPublisher() %></p>
+					<p><%= b.getCategory() %></p>
+					<p><%= b.getQuantity() %></p>
+					<p><%= b.getPrice() %></p>
+					<p><%= b.getPublicationDate() %></p>
+					<p><%= b.getLanguage() %></p>
+				<%}
+ 			
+ 				
+ 			}
+ 			else
+ 			{%>
+ 				<p>Book List is Empty
+ 			<%}
+ 	%>
+</body>
+</html>

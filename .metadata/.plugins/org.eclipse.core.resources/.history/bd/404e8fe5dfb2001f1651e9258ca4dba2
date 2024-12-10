@@ -1,0 +1,39 @@
+package com.sg.entityclass;
+
+import java.sql.Date;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+public class IssuedBooks {
+	
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "issueId")
+	private int issueId;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "sId" , referencedColumnName = "sId" , nullable = false)
+	private Student student;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "bId" , referencedColumnName = "bId" , nullable = false)
+	private Books book;
+
+	
+	
+	@Column(name = "sId")
+	private int sId;
+	@Column(name = "issueDate")
+	private Date issueDate;
+	@Column(name = "returnDate")
+	private Date returnDate;
+	
+
+}

@@ -1,0 +1,10 @@
+package com.sg.HibernateDAOImpl;
+
+public class HibernateDAOImpl {
+	
+	public HibernateDAOImpl() {
+		
+		
+	}
+
+}

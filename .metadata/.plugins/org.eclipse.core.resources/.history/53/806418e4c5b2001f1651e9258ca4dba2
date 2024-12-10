@@ -1,0 +1,37 @@
+package com.sg.servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.sg.HibernateDAOImpl.HibernateDAOImpl;
+import com.sg.entityclass.Books;
+
+/**
+ * Servlet implementation class FetchOne
+ */
+
+public class FetchOne extends HttpServlet {
+	
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		
+		HibernateDAOImpl hdaoi = new HibernateDAOImpl();
+		int id = Integer.parseInt(req.getParameter("bookId"));
+		
+		Books b = hdaoi.fetchOneBook(id);
+//		PrintWriter pw = resp.getWriter();
+//		pw.println(b.getbId());
+		
+		req.getSession().setAttribute("book", b);
+		
+		
+	}
+
+
+}

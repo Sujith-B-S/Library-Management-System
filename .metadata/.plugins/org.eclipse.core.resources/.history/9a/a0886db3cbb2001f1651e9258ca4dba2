@@ -1,0 +1,86 @@
+package com.sg.HibernateDAOImpl;
+
+import java.util.ArrayList;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
+
+import com.sg.entityclass.Admins;
+import com.sg.entityclass.Books;
+
+public class HibernateDAOImpl {
+	
+	private Session session;
+
+	public HibernateDAOImpl() {
+		
+		 session = new Configuration()
+				.configure()
+				.addAnnotatedClass(Admins.class)
+				.addAnnotatedClass(Books.class)
+				.buildSessionFactory()
+				.openSession();
+	}
+	
+	public void inserAdminData(Admins a)
+	{
+		Transaction t = session.beginTransaction();
+		session.persist(a);
+		t.commit();
+	}
+	
+	
+	public void inserBooks(Books b)
+	{
+		Transaction t = session.beginTransaction();
+		session.persist(b);
+		t.commit();
+		System.out.println("Insertd");
+	}
+	
+	public Admins fetchSpecificAdmin(String email) {
+	    String hql = "FROM Admins WHERE email = :email";
+	    return session.createQuery(hql, Admins.class)
+	                  .setParameter("email", email)
+	                  .uniqueResult();
+	}
+	
+	
+	public ArrayList<Books> fetchAllBooks()
+	{
+		Query q = session.createQuery("from Books");
+		ArrayList<Books> bList = (ArrayList<Books>) q.list();
+		
+		return bList;
+	}
+	
+	public Books fetchOneBook(int id)
+	{
+//		String hql = "FROM Books WHERE bId = :id";
+//	    return session.createQuery(hql, Books.class)
+//	                  .setParameter("bId", id)
+//	                  .uniqueResult();
+		
+		Books b = session.get(Books.class, id);
+		return b;
+		
+	}
+	
+	public void updateBook(String bname , String publisher , String category , int quantity , double price , String pDate , String description , String language )
+	{
+		Transaction t = session.beginTransaction();
+		Query query = session.createQuery("update books b set b.bName= :bName , b.publisher= :publisher , b.category= :category , b.quantity= :quantity , b.price= :price , b.publicationDate= :publicationDate , b.description= :description , b.language= :language");
+		query.setParameter("bName", bname);
+		query.setParameter("publisher", publisher);
+		query.setParameter("category", category);
+		query.setParameter("quantity", quantity);
+		query.setParameter("price", price);
+		query.setParameter("publicationDate", pDate);
+		query.setParameter("description", description);
+		query.setParameter("publicationDate", language);
+	}
+
+
+}

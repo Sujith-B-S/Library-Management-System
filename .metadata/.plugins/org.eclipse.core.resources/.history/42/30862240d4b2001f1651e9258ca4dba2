@@ -1,0 +1,44 @@
+package com.sg.servlets;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.sg.HibernateDAOImpl.HibernateDAOImpl;
+import com.sg.entityclass.Student;
+
+/**
+ * Servlet implementation class StudentRegistration
+ */
+public class StudentRegistration extends HttpServlet {
+	
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
+		String name = req.getParameter("name");
+		String email = req.getParameter("email");
+		String password = req.getParameter("pwd");
+		String cpassword = req.getParameter("cpwd");
+		String phone = req.getParameter("phone");
+		String address = req.getParameter("address");
+		String department = req.getParameter("department");
+		int sem = Integer.parseInt( req.getParameter("address"));
+		
+		HibernateDAOImpl hdaoi = new HibernateDAOImpl();
+		
+		Student s = new Student(name, email, password, phone, address, department, sem);
+		
+		if(password.equals(cpassword))
+		{
+			hdaoi.inserStudentData(s);
+			resp.sendRedirect("home.jsp");
+		}
+		 
+		
+	}
+
+}

@@ -1,0 +1,47 @@
+package com.sg.servlets;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.sg.HibernateDAOImpl.HibernateDAOImpl;
+import com.sg.entityclass.Books;
+import com.sg.entityclass.IssuedBooks;
+import com.sg.entityclass.Student;
+
+/**
+ * Servlet implementation class IssueBooks
+ */
+@WebServlet("/IssueBook")
+public class IssueBook extends HttpServlet {
+	
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		int sId = Integer.parseInt(req.getParameter("sId"));
+		int bId = Integer.parseInt(req.getParameter("bId"));
+		String returnDate = req.getParameter("returnDate");
+		
+		HibernateDAOImpl hdaoi = new HibernateDAOImpl();
+		
+		Student s = hdaoi.fetchOneStudent(sId);
+		
+		Books b = hdaoi.fetchOneBook(bId);
+		
+		if(s != null && b != null)
+		{			
+			IssuedBooks ib = new IssuedBooks(s, b ,returnDate);
+			hdaoi.insertIssuedBooks(ib);
+			resp.sendRedirect("FetchAll");
+		}
+		
+		
+		
+		
+	}
+
+}

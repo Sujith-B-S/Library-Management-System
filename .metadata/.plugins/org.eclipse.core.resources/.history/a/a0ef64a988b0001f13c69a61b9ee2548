@@ -1,0 +1,41 @@
+package com.sg.servlets;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.sg.HibernateDAOImpl.HibernateDAOImpl;
+import com.sg.entityclass.Books;
+
+/**
+ * Servlet implementation class InsertBook
+ */
+@WebServlet("/InsertBook")
+public class InsertBook extends HttpServlet {
+	
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		
+		String bName = req.getParameter("bName");
+		String publisher = req.getParameter("publisher");
+		int quantity = Integer.parseInt(req.getParameter("quantity"));
+		double price = Double.parseDouble(req.getParameter("price"));
+		String pDate = req.getParameter("pDate");
+		String description = req.getParameter("description");
+		String language = req.getParameter("language");
+		
+		HibernateDAOImpl hdaoi = new HibernateDAOImpl();
+		
+		Books b = new Books(bName, publisher, pDate, quantity, price, pDate, description, language);
+		
+		hdaoi.inserBooks(b);
+		
+		
+	}
+
+}

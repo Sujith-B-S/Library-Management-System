@@ -1,0 +1,180 @@
+package com.sg.entityclass;
+
+import java.sql.Date;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+
+public class Books {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "bId")
+	private int bId;
+	
+	@Column(name = "bName")
+	private String bName;
+	
+	@Column(name = "publisher" ,  nullable = false)
+	private String publisher;
+	
+	@Column(name = "category" , nullable = false)
+	private String category;
+	
+	@Column(name = "quantity" , nullable = false)
+	private int quantity;
+	
+	@Column(name = "price" , nullable = false)
+	private double price;
+	
+	@Column(name = "publicationDate" , nullable = false)
+	@Temporal(TemporalType.DATE)
+	private Date publicationDate;
+	
+	@Column(name = "description" , nullable = false)
+	private String description;
+	
+	@Column(name = "language" , nullable = false)
+	private String language;
+
+	
+	public Books() {
+		super();
+	}
+
+
+	public Books(int bId, String bName, String publisher, String category, int quantity, double price,
+			Date publicationDate, String description, String language) {
+		super();
+		this.bId = bId;
+		this.bName = bName;
+		this.publisher = publisher;
+		this.category = category;
+		this.quantity = quantity;
+		this.price = price;
+		this.publicationDate = publicationDate;
+		this.description = description;
+		this.language = language;
+	}
+
+
+	public Books(String bName, String publisher, String category, int quantity, double price, Date publicationDate,
+			String description, String language) {
+		super();
+		this.bName = bName;
+		this.publisher = publisher;
+		this.category = category;
+		this.quantity = quantity;
+		this.price = price;
+		this.publicationDate = publicationDate;
+		this.description = description;
+		this.language = language;
+	}
+
+
+	public int getbId() {
+		return bId;
+	}
+
+
+	public void setbId(int bId) {
+		this.bId = bId;
+	}
+
+
+	public String getbName() {
+		return bName;
+	}
+
+
+	public void setbName(String bName) {
+		this.bName = bName;
+	}
+
+
+	public String getPublisher() {
+		return publisher;
+	}
+
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+
+
+	public String getCategory() {
+		return category;
+	}
+
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+
+	public double getPrice() {
+		return price;
+	}
+
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+
+	public Date getPublicationDate() {
+		return publicationDate;
+	}
+
+
+	public void setPublicationDate(Date publicationDate) {
+		this.publicationDate = publicationDate;
+	}
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+	public String getLanguage() {
+		return language;
+	}
+
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Books [bId=" + bId + ", bName=" + bName + ", publisher=" + publisher + ", category=" + category
+				+ ", quantity=" + quantity + ", price=" + price + ", publicationDate=" + publicationDate
+				+ ", description=" + description + ", language=" + language + "]";
+	}
+	
+	
+	
+	
+
+}

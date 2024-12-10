@@ -1,0 +1,59 @@
+package com.sg.HibernateDAOImpl;
+
+import java.util.ArrayList;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
+
+import com.sg.entityclass.Admins;
+import com.sg.entityclass.Books;
+
+public class HibernateDAOImpl {
+	
+	private Session session;
+
+	public HibernateDAOImpl() {
+		
+		 session = new Configuration()
+				.configure()
+				.addAnnotatedClass(Admins.class)
+				.buildSessionFactory()
+				.openSession();
+	}
+	
+	public void inserAdminData(Admins a)
+	{
+		Transaction t = session.beginTransaction();
+		session.persist(a);
+		t.commit();
+	}
+	
+	
+	public void inserBooks(Books b)
+	{
+		Transaction t = session.beginTransaction();
+		session.persist(b);
+		t.commit();
+		System.out.println("Insertd");
+	}
+	
+	public Admins fetchSpecificAdmin(String email) {
+	    String hql = "FROM Admins WHERE email = :email";
+	    return session.createQuery(hql, Admins.class)
+	                  .setParameter("email", email)
+	                  .uniqueResult();
+	}
+	
+	
+	public ArrayList<Books> fetchAllBooks()
+	{
+		Query q = session.createQuery("from Books");
+		ArrayList<Books> bList = (ArrayList<Books>) q.list();
+		
+		return bList;
+	}
+
+
+}

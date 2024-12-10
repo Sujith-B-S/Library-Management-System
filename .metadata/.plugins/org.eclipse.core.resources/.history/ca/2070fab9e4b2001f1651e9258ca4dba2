@@ -1,0 +1,140 @@
+package com.sg.HibernateDAOImpl;
+
+import java.util.ArrayList;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
+
+import com.sg.entityclass.Admins;
+import com.sg.entityclass.Books;
+import com.sg.entityclass.IssuedBooks;
+import com.sg.entityclass.Student;
+
+public class HibernateDAOImpl {
+	
+	private Session session;
+
+	public HibernateDAOImpl() {
+		
+		 session = new Configuration()
+				.configure()
+				.addAnnotatedClass(Admins.class)
+				.addAnnotatedClass(Books.class)
+				.addAnnotatedClass(Student.class)
+				.addAnnotatedClass(IssuedBooks.class)
+				.buildSessionFactory()
+				.openSession();
+	}
+	
+	public void inserAdminData(Admins a)
+	{
+		Transaction t = session.beginTransaction();
+		session.persist(a);
+		t.commit();
+	}
+	public void inserStudentData(Student s)
+	{
+		Transaction t = session.beginTransaction();
+		session.persist(s);
+		t.commit();
+	}
+	
+	
+	public void inserBooks(Books b)
+	{
+		Transaction t = session.beginTransaction();
+		session.persist(b);
+		t.commit();
+		
+	}
+	public void insertIssuedBooks(IssuedBooks ib)
+	{
+		Transaction t = session.beginTransaction();
+		session.persist(ib);
+		t.commit();
+		
+	}
+	
+	public Admins fetchSpecificAdmin(String email) {
+	    String hql = "FROM Admins WHERE email = :email";
+	    return session.createQuery(hql, Admins.class)
+	                  .setParameter("email", email)
+	                  .uniqueResult();
+	}
+	
+	
+	public ArrayList<Books> fetchAllBooks()
+	{
+		Query q = session.createQuery("from Books");
+		ArrayList<Books> bList = (ArrayList<Books>) q.list();
+		
+		return bList;
+	}
+	public ArrayList<Student> fetchAllStudent()
+	{
+		Query q = session.createQuery("from Student");
+		ArrayList<Student> sList = (ArrayList<Student>) q.list();
+		
+		return sList;
+	}
+	public ArrayList<Student> fetchAllIssuedBooks()
+	{
+		Query q = session.createQuery("from IssuedBooks");
+		ArrayList<Student> sList = (ArrayList<Student>) q.list();
+		
+		return sList;
+	}
+	
+	public Books fetchOneBook(int id)
+	{
+//		String hql = "FROM Books WHERE bId = :id";
+//	    return session.createQuery(hql, Books.class)
+//	                  .setParameter("bId", id)
+//	                  .uniqueResult();
+		
+		Books b = session.get(Books.class, id);
+		return b;
+		
+	}
+	public Student fetchOneStudent(int id)
+	{
+//		String hql = "FROM Books WHERE bId = :id";
+//	    return session.createQuery(hql, Books.class)
+//	                  .setParameter("bId", id)
+//	                  .uniqueResult();
+		
+		Student s = session.get(Student.class, id);
+		return s;
+		
+	}
+	
+	public int updateBook(int bId,String bname , String publisher , String category , int quantity , double price , String pDate , String description , String language )
+	{
+		Transaction t = session.beginTransaction();
+		Query query = session.createQuery("update Books b set b.bName= :bName , b.publisher= :publisher , b.category= :category , b.quantity= :quantity , b.price= :price , b.publicationDate= :publicationDate , b.description= :description , b.language= :language where bId= :bId");
+		query.setParameter("bName", bname);
+		query.setParameter("publisher", publisher);
+		query.setParameter("category", category);
+		query.setParameter("quantity", quantity);
+		query.setParameter("price", price);
+		query.setParameter("publicationDate", pDate);
+		query.setParameter("description", description);
+		query.setParameter("language", language);
+		query.setParameter("bId", bId);
+		int rowsAffected = query.executeUpdate();
+		t.commit();
+		return rowsAffected;
+	}
+	
+	public void deleteBook(int id)
+	{
+		Transaction t = session.beginTransaction();
+		Books b = session.get(Books.class, id);
+		session.delete(b);
+		t.commit();
+	}
+
+
+}

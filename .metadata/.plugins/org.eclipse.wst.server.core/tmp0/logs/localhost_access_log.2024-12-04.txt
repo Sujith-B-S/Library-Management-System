@@ -1,0 +1,6 @@
+127.0.0.1 - - [04/Dec/2024:01:41:18 +0530] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [04/Dec/2024:01:41:19 +0530] "GET /LibraryManagementSystem1/ HTTP/1.1" 200 1855
+0:0:0:0:0:0:0:1 - - [04/Dec/2024:01:41:46 +0530] "GET /LibraryManagementSystem1/Login?email=sujith%40gmail.com&pwd=1234 HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [04/Dec/2024:01:41:46 +0530] "GET /LibraryManagementSystem1/Login?email=sujith%40gmail.com&pwd=1234 HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [04/Dec/2024:01:41:47 +0530] "GET /LibraryManagementSystem1/Fetch HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [04/Dec/2024:01:41:50 +0530] "GET /LibraryManagementSystem1/home.jsp HTTP/1.1" 200 998

@@ -1,0 +1,19 @@
+package com.sg.HibernateDAOImpl;
+
+import org.hibernate.Session;
+import org.hibernate.cfg.Configuration;
+
+import com.sg.entityclass.Admins;
+
+public class HibernateDAOImpl {
+	
+	public HibernateDAOImpl() {
+		
+		Session session = new Configuration()
+				.configure()
+				.addAnnotatedClass(Admins.class)
+				.buildSessionFactory()
+				.openSession();
+	}
+
+}

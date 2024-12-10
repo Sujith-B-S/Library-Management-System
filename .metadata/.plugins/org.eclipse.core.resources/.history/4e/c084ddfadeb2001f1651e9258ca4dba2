@@ -1,0 +1,27 @@
+package com.sg.entityclass;
+
+import java.sql.Date;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+public class IssuedBooks {
+	
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "issueId")
+	private int issueId;
+	@Column(name = "uId")
+	private int uId;
+	@Column(name = "sId")
+	private int sId;
+	@Column(name = "issueDate")
+	private Date issueDate;
+	@Column(name = "returnDate")
+	private Date returnDate;
+	
+
+}

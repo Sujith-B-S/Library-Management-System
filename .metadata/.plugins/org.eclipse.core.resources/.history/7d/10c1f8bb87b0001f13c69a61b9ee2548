@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert Book Page</title>
+</head>
+<body>
+	<h1>Insert the New Book</h1>
+	
+	<form action="InsertBook">
+		<input type = "text" name = "bname" required="required" placeholder="Book Name">
+		<input type = "text" name = "publisher" required="required" placeholder="Publisher">
+		<input type = "text" name = "quantity" required="required" placeholder="Qunatity">
+		<input type = "text" name = "price" required="required" placeholder="Price">
+		<input type = "date" name = "pDate" required="required" placeholder="Publication Date">
+	</form>
+</body>
+</html>

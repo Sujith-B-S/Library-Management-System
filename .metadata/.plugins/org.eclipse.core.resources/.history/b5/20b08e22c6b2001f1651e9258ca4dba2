@@ -1,0 +1,46 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ page import = "java.util.*" %>
+    <%@ page import = "com.sg.entityclass.Books" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Update Book</title>
+</head>
+<body>
+
+	<h1>Update Book</h1>
+	<%
+	Books book = (Books) request.getSession().getAttribute("book");
+ 	
+ 			if(book != null && book.isEmpty())
+ 			{
+				for(Books b : bList)
+				{%>
+					
+				<form action="">
+					<input type = "text" name = "bname" value="<%= b.getbId() %>">
+				</form>
+					<%-- <p><%= b.getbName() %></p>
+					<p><%= b.getPublisher() %></p>
+					<p><%= b.getCategory() %></p>
+					<p><%= b.getQuantity() %></p>
+					<p><%= b.getPrice() %></p>
+					<p><%= b.getPublicationDate() %></p>
+					<p><%= b.getDescription() %></p>
+					<p><%= b.getLanguage() %></p>
+					<a href = "updateBook.jsp"> <button>Update</button> </a>
+					<a href = "DeleteBook"> <button>Delete</button> </a> --%>
+				<%}
+ 			
+ 				
+ 			}
+ 			else
+ 			{%>
+ 				<p>Book List is Empty</p>
+ 			<%}
+ 	%>
+
+</body>
+</html>
